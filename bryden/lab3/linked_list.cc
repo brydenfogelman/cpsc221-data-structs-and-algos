@@ -95,6 +95,25 @@ void remove(Node*& head, int oldKey) {
   // ******** WRITE YOUR CODE HERE ********
 	if(size(head) == 0) return;
 
+ Node* interim;
+   if(head->key == oldKey){
+     interim = head->next;
+     head = interim;
+   }
+   // ******** WRITE YOUR CODE HERE ********
+   for (Node* curr = head; curr != NULL; curr = curr->next){
+     if (curr->next->key == oldKey) {
+
+       interim = curr->next;
+       curr->next = interim->next;
+
+       delete interim;
+       return;
+
+
+     }
+   }
+
 	
 }
 
@@ -112,10 +131,11 @@ void insert_after(Node* head, int oldKey, int newKey){
 	if(size(head) == 0) return;
 
 	Node * temp;
-	for (Node* curr = head; next != NULL; curr = curr->next){
+	for (Node* curr = head; curr != NULL; curr = curr->next){
 		if(curr->key == oldKey) {
 			temp = curr->next;
-			Node * newNode = new Node(newKey);
+			Node * newNode = new Node;
+			newNode->key = newKey;
 			curr->next = newNode;
 			newNode->next = temp; 	
 		}         
@@ -134,6 +154,27 @@ void insert_after(Node* head, int oldKey, int newKey){
  */
 Node* interleave(Node* list1, Node* list2){
   // ******** WRITE YOUR CODE HERE ********
-  return NULL;  // ******** DELETE THIS LINE ********
+//	if(size(list1) == 0) return list2;
+//	if(size(list2) == 0) return list1;
+
+	// if(list1 != NULL && list2 != NULL) {
+
+	//Node * temp = list1->next;
+	Node * temp = list1->next;
+	list1->next = list2;
+	print(list1);
+	if(temp == NULL) {
+	print(list2);
+	//print(temp);
+	//interleave(list2,temp);
+}
+
+	// if(temp != NULL) {
+	//	interleave(list1->next,list2->next);
+	// }
+	return list1;
+//}
+
+	
 
 }
