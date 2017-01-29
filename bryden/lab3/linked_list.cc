@@ -109,7 +109,17 @@ void remove(Node*& head, int oldKey) {
  */
 void insert_after(Node* head, int oldKey, int newKey){
   // ******** WRITE YOUR CODE HERE ********
+	if(size(head) == 0) return;
 
+	Node * temp;
+	for (Node* curr = head; next != NULL; curr = curr->next){
+		if(curr->key == oldKey) {
+			temp = curr->next;
+			Node * newNode = new Node(newKey);
+			curr->next = newNode;
+			newNode->next = temp; 	
+		}         
+        }
 }
 
 /** 
