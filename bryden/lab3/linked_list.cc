@@ -59,7 +59,7 @@ std::vector<int> to_vector(Node* head) {
  * POST: else head remains the first Node in the linked_list
  */
 void delete_last_element(Node*& head){
-  // ******** WRITE YOUR CODE HERE ********
+  /*  // ******** WRITE YOUR CODE HERE ********
 	// linked list is already empty
 	if(size(head) == 0) return;
 	
@@ -80,6 +80,24 @@ void delete_last_element(Node*& head){
 	prev->next = NULL;
 	// delete the current node
 	delete curr;
+*/
+
+  Node* interim = head;
+  Node* curr = head;
+  
+  if(head!=NULL){
+    while(curr->next!=NULL){ 
+      interim = curr; 
+      curr = curr->next;
+    }
+    if(interim!=NULL){
+      interim->next = NULL;
+    }
+    if(interim == curr && head == interim){
+      head = NULL;
+    }
+  
+  }
 }
 
 /**
@@ -154,25 +172,40 @@ void insert_after(Node* head, int oldKey, int newKey){
  */
 Node* interleave(Node* list1, Node* list2){
   // ******** WRITE YOUR CODE HERE ********
-//	if(size(list1) == 0) return list2;
-//	if(size(list2) == 0) return list1;
+  
+  Node *interim, *start, *temp1, *temp2;
 
-	// if(list1 != NULL && list2 != NULL) {
-	Node * head = list1;
-	Node * toAdd = list2;
-	//Node * temp = list1->next;
-	Node * temp1 = new Node;
-	while ( toAdd != NULL && head != NULL) {
-		temp1 = head->next;
-		head->next = toAdd;
-		toAdd = temp1;
-	}
-	// if(temp != NULL) {
-	//	interleave(list1->next,list2->next);
-	// }
-	return list1;
-//}
+  temp1 = list1;
+  temp2 = list2;
 
-	
+  
+  if(temp1!=NULL){
+    start = new Node;
+    start->key = temp1->key;
+    temp1 = temp1->next;
+    interim = start;
+
+    while(temp1!=NULL || temp2!=NULL){
+      if(temp2!=NULL){
+	interim->next = new Node;
+	interim->next->key = temp2->key;
+	temp2 = temp2->next;
+	interim = interim->next;
+      }
+      if(temp1!=NULL){
+	interim->next = new Node;
+	interim->next->key = temp1->key;
+	temp1 = temp1->next;
+	interim = interim->next;
+      }
+    }
+  }
+  else{
+
+    start = temp2;
+  }
+
+  return start;  
 
 }
+

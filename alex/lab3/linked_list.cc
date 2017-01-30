@@ -60,23 +60,21 @@ std::vector<int> to_vector(Node* head) {
  */
 void delete_last_element(Node*& head){
 
-  if(size(head) == 0) return;
-
-  if(size(head) == 1){ 
-    head = NULL;
-    return;
-  }
-
-
-  Node* interim;
-  Node* curr;
-  for (curr = head; curr->next!= NULL; curr = curr->next){ 
-    interim = curr; 
-  }
-
-  interim->next = NULL;
-  delete curr;
+  Node* interim = head;
+  Node* curr = head;
   
+  if(head!=NULL){
+    for (curr = head; curr->next!= NULL; curr = curr->next){ 
+      interim = curr; 
+    }
+    if(interim!=NULL){
+      interim->next = NULL;
+    }
+    if(interim == curr && head == interim){
+      head = NULL;
+    }
+  
+  }
 }
 
 /**
@@ -123,20 +121,23 @@ void remove(Node*& head, int oldKey) {
  */
 void insert_after(Node* head, int oldKey, int newKey){
   // ******** WRITE YOUR CODE HERE ********
-  if(size(head) == 0) return;
+  Node * newNode = new Node;
   
-  Node * temp;
   for (Node* curr = head; curr != NULL; curr = curr->next){
-    if(curr->key == oldKey) {
-      temp = curr->next;
-      Node * newNode = new Node;
+    std::cout<<curr->key;
+    if(curr->key == oldKey){
       newNode->key = newKey;
-      curr->next = newNode;
-      newNode->next = temp; 	
-    }         
+      if(curr->next == NULL){
+	curr->next = newNode;
+      }
+      else{
+	newNode->next = curr->next;
+	curr->next = newNode;	
+      }
+      return;
+    }
   }
 }
-
   /* Create a new linked_list by merging two existing linked_lists. 
  * PRE: list1 is the first Node in a linked_list (if NULL, then it is empty)
  * PRE: list2 is the first Node in another linked_list (if NULL, then it is empty)
@@ -149,30 +150,33 @@ void insert_after(Node* head, int oldKey, int newKey){
 Node* interleave(Node* list1, Node* list2){
   // ******** WRITE YOUR CODE HERE ********
   
-  Node* interim, start, temp1, temp2;
+  Node *interim, *start, *temp1, *temp2;
 
   temp1 = list1;
   temp2 = list2;
-
   
+  if(temp1!=NULL){
+    start = new Node;
+    start->key = temp1->key;
+    temp1 = temp1->next;
+    interim = start;
+  }
 
   while(list1!=NULL || list2!=NULL){
-    if(list1!=NULL){
-      interim->next = new Node;
-      interim->next->key = temp1->key;
-      temp1 = temp1->next;
-      interim = interim->next;
-    }
     if(list2!=NULL){
       interim->next = new Node;
       interim->next->key = temp2->key;
       temp2 = temp2->next;
       interim = interim->next;
     }
-    
-
+    if(list1!=NULL){
+      interim->next = new Node;
+      interim->next->key = temp1->key;
+      temp1 = temp1->next;
+      interim = interim->next;
+    }
   }
 
-  return NULL;  // ******** DELETE THIS LINE ********
+  return start;  
 
 }
