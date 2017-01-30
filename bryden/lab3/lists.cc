@@ -110,12 +110,11 @@ int main() {
   delete_last_element( list1 );		// list1 = [11,12]
 
   list_test("<J> delete_last_element(list1)", list1, {11,12});
-
   list3 = interleave(list1, list2);
-
+  print(list2);
   list_test("<K> interleave(list1,list2)", list3, {11,6,12,7,8,9,10});
   while( list3 ) delete_last_element(list3);
-
+  print(list2);
   list3 = interleave(list2, list2);
 
   list_test("<L> interleave(list2,list2)", list3, {6,6,7,7,8,8,9,9,10,10});
