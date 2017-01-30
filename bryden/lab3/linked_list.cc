@@ -158,17 +158,15 @@ Node* interleave(Node* list1, Node* list2){
 //	if(size(list2) == 0) return list1;
 
 	// if(list1 != NULL && list2 != NULL) {
-
+	Node * head = list1;
+	Node * toAdd = list2;
 	//Node * temp = list1->next;
-	Node * temp = list1->next;
-	list1->next = list2;
-	print(list1);
-	if(temp == NULL) {
-	print(list2);
-	//print(temp);
-	//interleave(list2,temp);
-}
-
+	Node * temp1 = new Node;
+	while ( toAdd != NULL && head != NULL) {
+		temp1 = head->next;
+		head->next = toAdd;
+		toAdd = temp1;
+	}
 	// if(temp != NULL) {
 	//	interleave(list1->next,list2->next);
 	// }
