@@ -52,6 +52,20 @@ void sort(int* heap, int size) {
 //POST: The first size elements of heap are printed as a tree
 void printHeap(int *heap, int size, int node=0, int d=0) {
     // TODO: put your code here for Questions 1 and 2
+/*	
+	for (int j = 0; j < d; j++) {
+		cout << "*";
+	}
+	cout << heap[node] << endl;
+	d++;
+	// left
+	int left = 2 * node + 1;
+	if(left < size) printHeap(heap, size, left, d);
+	// right
+	int right = 2 * node + 2;
+	if(right < size) printHeap(heap, size, right, d);
+*/
+	
 }
 
 //PRE:  heap points to an array representing a heap
@@ -71,7 +85,7 @@ void remove(int* heap, int key, int & size) {
 	right = 2(index)+2
 	parent = (k-1)/2
 	*/
-
+	
 }
 
 //PRE:  heap1 and heap2 contain size1 and size2 elements respectively.
