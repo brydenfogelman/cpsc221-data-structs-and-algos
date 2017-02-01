@@ -109,6 +109,23 @@ class Queue
         and execution allowed to proceed.
   -----------------------------------------------------------------------*/
 
+  void move_to_front(const QueueElement & value);
+  /*-----------------------------------------------------------------------
+    Move a particular queue element with the specified value to the
+    front of the queue.
+
+    Precondition:  Queue is nonempty, value exists in queue.
+    Postcondition: Front of the queue is moved to the second location
+        and the element with the specified value is moved to the front.
+  -----------------------------------------------------------------------*/
+
+  void merge_two_queues(Queue & q2);
+  /*-----------------------------------------------------------------------
+
+    Precondition: 
+    Postcondition: 
+  -----------------------------------------------------------------------*/
+
  private:
    /*** Node class ***/
    class Node

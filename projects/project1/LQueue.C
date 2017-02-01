@@ -127,3 +127,114 @@ void Queue::dequeue()
    else
       cerr << "*** Queue is empty -- can't remove a value ***\n";
 }
+
+void Queue::move_to_front(const QueueElement & value) 
+{
+    if(!empty())
+    {
+        Queue::NodePointer ptr;
+        Queue::NodePointer temp;
+
+        // if the first element is already the front of the queue return
+        if(myFront->data == value) {
+            return;
+        }
+
+        // find the location of the QueueElement
+        for (ptr = myFront; ptr->next != 0; ptr = ptr->next)
+        {
+            // if the next item in the queue has the value
+            if(ptr->next->data == value) {
+                // set the node to move as temp
+                temp = ptr->next;
+
+                // close the queue where we took the value out
+                ptr->next = temp->next;
+
+                // have myFront point to temp
+                temp->next = myFront;
+
+                // set myFront to be the new front node
+                myFront = temp;
+
+            }
+        }
+
+        cerr << "*** The value does not exist in the queue ***\n";
+        
+    } else {
+      cerr << "*** Queue is empty -- can't move a value ***\n";
+    }
+
+}
+
+void Queue::merge_two_queues(Queue & q2)
+{
+  // if q2 is empty the result is q1
+  if(q2.empty()) return;
+
+  // set q1 (this) to be a copy of q2 and delete q2
+  if(empty()) { 
+    // TODO implement
+    //this->Queue(q2);
+    // delete q2
+    //q2->~Queue();
+    return;
+  }
+
+  Queue::NodePointer q1ptr; // always points to the smaller value
+  Queue::NodePointer q2ptr; // always points to the larger value
+
+  // check which queue starts at a smaller value
+  if(myFront->data > q2.myFront->data) {
+    // if q2 starts with a smaller value set it to q1ptr
+    q1ptr = q2.myFront;
+    q2ptr = myFront;
+  } else {
+    // if q1 starts with a smaller value set it to q1ptr
+    q1ptr = myFront;
+    q2ptr = q2.myFront;
+  }
+
+  // set queue to be empty
+  myFront = myBack = 0;
+
+  // for (q1ptr = myFront; q1ptr->next != 0; q1ptr = q1ptr->next)
+  while(q1ptr != 0)
+  {
+    // check which queue has a smaller value
+    if(q1ptr->data > q2ptr->data) 
+    {
+      // since q2 has a smaller value, swap q1ptr and q2ptr
+      // Queue::NodePointer temp = new Queue::Node(q1ptr->data);
+      // temp->next = q1ptr->next;
+      Queue::NodePointer temp = q1ptr;
+
+      q1ptr = q2ptr;
+
+      // remove elements from q2 since we will be adding the q2 value later
+      q2.dequeue();
+
+      // set q2ptr to q1
+      q2ptr = temp;
+    }
+    // the values in q1 are equal or smaller then q2
+
+    // add what is stored in q1ptr to q1
+    enqueue(q1ptr->data);
+
+    // point to the next value in q1ptr
+    q1ptr = q1ptr->next;
+    
+  }
+
+  // add leftover values in q2 that are greater then the largest value from q1
+  while(q2ptr != 0) {
+    enqueue(q2ptr->data);
+
+    // remove elements from q2
+    q2.dequeue();
+    
+    q2ptr = q2ptr->next;
+  }
+}

@@ -46,5 +46,68 @@ int main(void)
    cout << "Trying to remove front of q2: " << endl;
    q2.dequeue();
    //system("PAUSE");
+   cout << endl;
+
+   cout << "###########################" << endl;
+   cout << "Test move_to_front function\n" << endl;
+  Queue q3;
+  for (int i = 1; i <= 5; i++) 
+      q3.enqueue(100*i);
+
+  cout << "Contents of queue q3 (via  print):\n";
+  print(q3); 
+  cout << endl;
+
+  cout << "Move Queue Element 200 to front:\n";
+  q3.move_to_front(200);
+  cout << endl;
+
+  cout << "Front value in q3?" << endl << q3.front() << endl;
+
+  cout << "Trying to moving value that is already front:\n";
+  q3.move_to_front(200);
+  cout << "Front value in q3?" << endl << q3.front() << endl;
+
+  cout << "Trying moving value not in queue:\n";
+  q3.move_to_front(600);
+  cout << endl;
+
+  while (!q3.empty())
+   {
+     q3.dequeue();
+   }
+
+   cout << "Queue q3 empty? " << q3.empty() << endl;
+   cout << "Trying moving item in empty queue: " << endl;
+   q3.move_to_front(100);
+   cout << endl;
+
+   cout << "###########################" << endl;
+   cout << "Test move_to_front function\n" << endl;
+
+   Queue q4, q5;
+  for (int i = 1; i <= 5; i++) 
+  {
+      q4.enqueue(i+2);
+      q5.enqueue(i);
+  }
+
+  cout << "Contents of queue q4 (via  print):\n";
+  print(q4);
+  cout << endl;
+  cout << "Contents of queue q5 (via  print):\n";
+  print(q5); 
+  cout << endl;
+
+  cout << "Merge q4 and q5:\n";
+  q4.merge_two_queues(q5);
+  cout << endl;
+  cout << "Contents of queue q4 (via  print):\n";
+  print(q4);
+  cout << endl;
+  cout << "Contents of queue q5 (via  print):\n";
+  print(q5); 
+  cout << endl;
+
    return 0;
 }
