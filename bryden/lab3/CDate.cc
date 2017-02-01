@@ -18,7 +18,7 @@ CDate::CDate(int year, int month, int day){
 CDate::CDate(int year, std::string month, int day){
 	// TODO you need to fill in the code here        ********
 	// HINT use monthStr2Num to get the month_num
-	setDate( year, monthStr2Num(month), day ); 
+	CDate( year, monthStr2Num(month), day ); 
 }
 
 bool CDate::isValidDate(int year, int month, int day){
