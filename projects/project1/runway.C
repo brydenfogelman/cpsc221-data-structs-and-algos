@@ -46,36 +46,36 @@ int main(void)
 
   //Accept user input for all above variables:
 
-  cout<<"Enter the following parameters for simulation (integers only):"<<endl;
+  cout<<"\n"<<"Enter the following parameters for simulation (integers only):"<<endl;
 
-  cout<<"Duration of Landing: ";
+  cout<<"\t"<<"Duration of Landing (minutes): ";
   cin>>landingTime;
   
-  cout<<"Duration of Takeoff: ";
+  cout<<"\t"<<"Duration of Takeoff (minutes): ";
   cin>>takeOffTime;
 
-  cout<<"Landing Rate in Planes per hour: ";
+  cout<<"\t"<<"Landing Rate in Planes per hour: ";
   cin>>landingRate;
 
-  cout<<"Takeoff Rate in planes per hour: ";
+  cout<<"\t"<<"Takeoff Rate in planes per hour: ";
   cin>>takeOffRate;
 
-  cout<<"Duration of Simulation: ";
+  cout<<"\t"<<"Duration of Simulation: ";
   cin>>timeLength;
 
   srand(time(NULL));
 
   for(int i = 0; i < timeLength; i++){
     
-    cout<<"TIME: "<<i<<endl;
+    cout<<"TIME: "<<i;
 
     if(waitTime!=0){
       waitTime--;
-      cout<<"Runway Busy!!"<<endl;
+      cout<<" | Runway Status: Busy"<<endl;
     }
     else{
       runwayFree = true;
-      cout<<"Runway Open!!"<<endl;
+      cout<<" | Runway Status: Open"<<endl;
     }
 
     
@@ -87,7 +87,7 @@ int main(void)
     //cout<<takeOffRand<<endl;
 
     if(landingRand < landingRate){
-      cout<<"Enqueuing Plane "<<planeNumber<<" to landing queue"<<endl;
+      cout<<"\t"<<"Plane "<<planeNumber<<" requesting to land. Enqueuing to landing queue"<<endl;
       landingQueue.enqueue(planeNumber);
       landingQueueSize++;
 
@@ -100,7 +100,7 @@ int main(void)
       
     }
     if(takeOffRand < takeOffRate){
-      cout<<"Enqueuing Plane "<<planeNumber<<" to take off queue"<<endl;
+      cout<<"\t"<<"Plane "<<planeNumber<<" requesting takeoff. Enqueueing to takeoff queue"<<endl;
       takeOffQueue.enqueue(planeNumber);
       takeOffQueueSize++;
       
@@ -119,7 +119,7 @@ int main(void)
 	
 	//Dequeue plane from landing queue
 	//Set wait timer to landing time
-	cout<<"Plane "<<landingQueue.front()<<" LANDING"<<endl;
+	cout<<"\t"<<"Plane "<<landingQueue.front()<<" LANDING after waiting "<<i - waitingMap[landingQueue.front()]<<" mins"<<endl;
 	landingTotalTime+= i - waitingMap[landingQueue.front()];
 	landingQueue.dequeue();
 	landingQueueSize--;
@@ -134,7 +134,7 @@ int main(void)
 	//Set wait timer to takeoff time
 	
 	if(!takeOffQueue.empty()){
-	  cout<<"Plane "<<takeOffQueue.front()<<" TAKING OFF"<<endl;
+	  cout<<"\t"<<"Plane "<<takeOffQueue.front()<<" TAKING OFF after waiting "<<i - waitingMap[takeOffQueue.front()]<<" mins"<<endl;
 	  takeOffTotalTime+= i - waitingMap[takeOffQueue.front()];
 	  takeOffQueue.dequeue();
 	  takeOffQueueSize--;
@@ -150,10 +150,12 @@ int main(void)
   float averageTakeOffTime = (float)takeOffTotalTime/numTakeOffs;
   float averageLandingTime = (float)landingTotalTime/numLandings;
 
-  cout<<"Average Waiting Time for Takeoff: "<<averageTakeOffTime<<endl;
-  cout<<"Average Waiting Time for Landing: "<<averageLandingTime<<endl;
-  cout<<"Maximum Length of Takeoff Queue: "<<maxTakeOffQueue<<endl;
-  cout<<"Maximum Length of Landing Queue: "<<maxLandingQueue<<endl;
+  cout<<"\n"<<"Simulation Finished! Statistics:"<<endl;
+  cout<<"\t"<<"Average Waiting Time for Takeoff: "<<averageTakeOffTime<<" mins"<<endl;
+  cout<<"\t"<<"Average Waiting Time for Landing: "<<averageLandingTime<<" mins"<<endl;
+  cout<<"\t"<<"Maximum Length of Takeoff Queue: "<<maxTakeOffQueue<<endl;
+  cout<<"\t"<<"Maximum Length of Landing Queue: "<<maxLandingQueue<<endl;
+  cout<<endl;
   
   return 0; 
 }
