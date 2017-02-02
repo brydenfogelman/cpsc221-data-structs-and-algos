@@ -64,8 +64,10 @@ int main(void)
   cin>>timeLength;
 
   srand(time(NULL));
+  int i = 0;
+  bool complete = false;
 
-  for(int i = 0; i < timeLength; i++){
+  while(!complete){
     
     cout<<"TIME: "<<i;
 
@@ -78,38 +80,41 @@ int main(void)
       cout<<" | Runway Status: Open"<<endl;
     }
 
+    if(i <= 120){
     
-    landingRand = rand() % 60;
-
-    //cout<<landingRand<<endl;
-    takeOffRand = rand() % 60;
-    
-    //cout<<takeOffRand<<endl;
-
-    if(landingRand < landingRate){
-      cout<<"\t"<<"Plane "<<planeNumber<<" requesting to land. Enqueuing to landing queue"<<endl;
-      landingQueue.enqueue(planeNumber);
-      landingQueueSize++;
-
-      if(landingQueueSize>maxLandingQueue){
-	maxLandingQueue = landingQueueSize;
+      landingRand = rand() % 60;
+      
+      //cout<<landingRand<<endl;
+      takeOffRand = rand() % 60;
+      
+      //cout<<takeOffRand<<endl;
+      
+      if(landingRand < landingRate){
+	cout<<"\t"<<"Plane "<<planeNumber<<" requesting to land. Enqueuing to landing queue"<<endl;
+	landingQueue.enqueue(planeNumber);
+	landingQueueSize++;
+	
+	if(landingQueueSize>maxLandingQueue){
+	  maxLandingQueue = landingQueueSize;
+	}
+	
+	waitingMap[planeNumber] = i;
+	planeNumber++;
+	
       }
-      
-      waitingMap[planeNumber] = i;
-      planeNumber++;
-      
-    }
-    if(takeOffRand < takeOffRate){
-      cout<<"\t"<<"Plane "<<planeNumber<<" requesting takeoff. Enqueueing to takeoff queue"<<endl;
-      takeOffQueue.enqueue(planeNumber);
-      takeOffQueueSize++;
-      
-      if(takeOffQueueSize > maxTakeOffQueue){
-	maxTakeOffQueue = takeOffQueueSize;
+      if(takeOffRand < takeOffRate){
+	cout<<"\t"<<"Plane "<<planeNumber<<" requesting takeoff. Enqueueing to takeoff queue"<<endl;
+	takeOffQueue.enqueue(planeNumber);
+	takeOffQueueSize++;
+	
+	if(takeOffQueueSize > maxTakeOffQueue){
+	  maxTakeOffQueue = takeOffQueueSize;
+	}
+	
+	waitingMap[planeNumber] = i;
+	planeNumber++;
+	
       }
-
-      waitingMap[planeNumber] = i;
-      planeNumber++;
       
     }
     
@@ -145,6 +150,13 @@ int main(void)
 	}	
       }
     }
+    if(i > 120 && takeOffQueue.empty() && landingQueue.empty()){
+
+      complete = true;
+      
+    }
+    i++;
+
   }
 
   float averageTakeOffTime = (float)takeOffTotalTime/numTakeOffs;
