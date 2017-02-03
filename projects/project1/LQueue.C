@@ -136,9 +136,18 @@ void Queue::move_to_front(const QueueElement & value)
         Queue::NodePointer temp;
 
         // if the first element is already the front of the queue return
-        if(myFront->data == value) {
+        if(front() == value) {
             return;
         }
+
+	if(myBack->data  == value) {
+		temp = myFront;
+		myFront = myBack;
+		myBack = temp;
+		myFront->next = myBack;
+		myBack->next = 0;
+		return;
+	}
 
         // find the location of the QueueElement
         for (ptr = myFront; ptr->next != 0; ptr = ptr->next)
@@ -147,7 +156,7 @@ void Queue::move_to_front(const QueueElement & value)
             if(ptr->next->data == value) {
                 // set the node to move as temp
                 temp = ptr->next;
-
+		
                 // close the queue where we took the value out
                 ptr->next = temp->next;
 
@@ -156,6 +165,7 @@ void Queue::move_to_front(const QueueElement & value)
 
                 // set myFront to be the new front node
                 myFront = temp;
+		
 
             }
         }
