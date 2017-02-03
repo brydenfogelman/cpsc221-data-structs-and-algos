@@ -173,25 +173,25 @@ void Queue::merge_two_queues(Queue & q2)
   // if q2 is empty the result is q1
   if(q2.empty()) return;
 
-  // set q1 (this) to be a copy of q2 and delete q2
-  if(empty()) { 
-    // TODO implement
-    //this->Queue(q2);
-    // delete q2
-    //q2->~Queue();
-    return;
-  }
-
-  Queue::NodePointer q1ptr; // always points to the smaller value
-  Queue::NodePointer q2ptr; // always points to the larger value
-
-  Queue q1;
-
+  //Queue::NodePointer q1ptr; // always points to the smaller value
+  //Queue::NodePointer q2ptr; // always points to the larger value
+  Queue q1; 
+/*
   while(myFront != 0)
   {
 	q1.enqueue(front());
 	dequeue();
   }
+*/
+  Queue::NodePointer q1ptr = 0; // always points to the smaller value
+  Queue::NodePointer q2ptr = 0; // always points to the larger value
+  
+  if(!empty()) {
+  while(myFront != 0)
+   {
+         q1.enqueue(front());
+         dequeue();
+    }
   // check which queue starts at a smaller value
   if(q1.myFront->data > q2.myFront->data) {
     // if q2 starts with a smaller value set it to q1ptr
@@ -201,6 +201,9 @@ void Queue::merge_two_queues(Queue & q2)
     // if q1 starts with a smaller value set it to q1ptr
     q1ptr = q1.myFront;
     q2ptr = q2.myFront;
+  }
+  } else {
+	q2ptr = q2.myFront;
   }
   
   // Create new queue to hold results

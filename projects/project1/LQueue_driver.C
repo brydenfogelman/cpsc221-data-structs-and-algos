@@ -105,8 +105,17 @@ int main(void)
   cout << "Contents of queue q4 (via  print):\n";
   print(q4);
   cout << endl;
-  cout << "Contents of queue q5 (via  print):\n";
-  print(q5); 
+  cout << "Is q5 empty?: " << q5.empty() << endl; 
+  cout << endl;
+  cout << "Now trying merging with an empty queue\n";
+  q4.merge_two_queues(q5);
+  print(q4);
+  cout << endl;
+  cout << "Now merge q4 into the empty queue, q5\n";
+  cout << "Contents of queue q4 (via  print):\n";
+  q5.merge_two_queues(q4);
+  cout << "Is q5 empty?: " << q5.empty() << endl;
+  print(q5);
   cout << endl;
 
    return 0;
