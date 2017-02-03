@@ -81,10 +81,13 @@ int main(void)
    cout << "Trying moving item in empty queue: " << endl;
    q3.move_to_front(100);
    cout << endl;
-   cout << "Test with one item";
+   cout << "Test with item to find as back" << endl;
    q3.enqueue(100);
    q3.enqueue(200);
    q3.move_to_front(200);
+   cout << "Contents of q3:" <<endl;
+   print(q3);
+   cout << endl;
 	
    cout << "###########################" << endl;
    cout << "Test merge_two_queues function\n" << endl;
