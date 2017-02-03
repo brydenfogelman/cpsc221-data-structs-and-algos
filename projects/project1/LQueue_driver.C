@@ -81,9 +81,16 @@ int main(void)
    cout << "Trying moving item in empty queue: " << endl;
    q3.move_to_front(100);
    cout << endl;
-
+   cout << "Test with item to find as back" << endl;
+   q3.enqueue(100);
+   q3.enqueue(200);
+   q3.move_to_front(200);
+   cout << "Contents of q3:" <<endl;
+   print(q3);
+   cout << endl;
+	
    cout << "###########################" << endl;
-   cout << "Test move_to_front function\n" << endl;
+   cout << "Test merge_two_queues function\n" << endl;
 
    Queue q4, q5;
   for (int i = 1; i <= 5; i++) 
@@ -104,10 +111,23 @@ int main(void)
   cout << endl;
   cout << "Contents of queue q4 (via  print):\n";
   print(q4);
+  cout << "Is q5 empty?: " << q5.empty() << endl; 
   cout << endl;
+  cout << "Now trying merging with an empty queue\n";
+  q4.merge_two_queues(q5);
+  cout << "Contents of queue q4 (via  print):\n";
+  print(q4);
+  cout << endl;
+  cout << "Now merge q4 into the empty queue, q5\n";
+  q5.merge_two_queues(q4);
   cout << "Contents of queue q5 (via  print):\n";
-  print(q5); 
-  cout << endl;
+  print(q5);
+  cout << "Is q4 empty?: " << q4.empty() << endl;
+  cout << "Both empty?" << endl;
+  q4.merge_two_queues(q4);
+  cout << "Contents of queue q4 (via  print):\n";
+  print(q4);
+  cout << "As expected q4 is empty!";
 
    return 0;
 }
