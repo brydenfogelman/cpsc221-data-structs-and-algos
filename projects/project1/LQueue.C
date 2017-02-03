@@ -139,34 +139,33 @@ void Queue::move_to_front(const QueueElement & value)
         if(front() == value) {
             return;
         }
-
-	if(myBack->data  == value) {
-		temp = myFront;
-		myFront = myBack;
-		myBack = temp;
-		myFront->next = myBack;
-		myBack->next = 0;
-		return;
-	}
+	// if we want to move back to front, we can quickly perform this
+	// also the loop below does not need to check the back case
 
         // find the location of the QueueElement
         for (ptr = myFront; ptr->next != 0; ptr = ptr->next)
         {
-            // if the next item in the queue has the value
+    		// if the next item in the queue has the value
             if(ptr->next->data == value) {
                 // set the node to move as temp
                 temp = ptr->next;
 		
-                // close the queue where we took the value out
-                ptr->next = temp->next;
-
-                // have myFront point to temp
-                temp->next = myFront;
-
-                // set myFront to be the new front node
-                myFront = temp;
-		
-
+		// the case when we are looking at the back item;		
+		if(temp->next == 0) {
+			// swap front and back
+			temp = myFront;
+			myFront = myBack;
+			myFront->next = temp;
+			ptr->next = 0;
+			myBack = ptr;
+			return; 
+		} else {
+                	// close the queue where we took the value out
+                	ptr->next = temp->next;
+			temp->next = myFront;
+			myFront = temp;
+			return;
+		}
             }
         }
 
@@ -183,25 +182,22 @@ void Queue::merge_two_queues(Queue & q2)
   // if q2 is empty the result is q1
   if(q2.empty()) return;
 
-  //Queue::NodePointer q1ptr; // always points to the smaller value
-  //Queue::NodePointer q2ptr; // always points to the larger value
+  // create queue to hold contents of this queue
   Queue q1; 
-/*
-  while(myFront != 0)
-  {
-	q1.enqueue(front());
-	dequeue();
-  }
-*/
+
   Queue::NodePointer q1ptr = 0; // always points to the smaller value
   Queue::NodePointer q2ptr = 0; // always points to the larger value
   
+  // if the current queue is empty skip this part
   if(!empty()) {
-    while(!empty())
+
+  // add all the values of this queue to q1
+  while(!empty())
    {
          q1.enqueue(front());
          dequeue();
     }
+
   // check which queue starts at a smaller value
   if(q1.myFront->data > q2.myFront->data) {
     // if q2 starts with a smaller value set it to q1ptr
@@ -218,17 +214,13 @@ void Queue::merge_two_queues(Queue & q2)
   
   // Create new queue to hold results
 
-
   // for (q1ptr = myFront; q1ptr->next != 0; q1ptr = q1ptr->next)
   while(q1ptr != 0)
-  {
-    //Queue::NodePointer temp = q1ptr;	
+  {	
     // check which queue has a smaller value
     if(q1ptr->data > q2ptr->data) 
     {
       // since q2 has a smaller value, swap q1ptr and q2ptr
-      // Queue::NodePointer temp = new Queue::Node(q1ptr->data);
-      // temp->next = q1ptr->next;
       Queue::NodePointer temp = q1ptr;
 
       q1ptr = q2ptr;
@@ -238,12 +230,7 @@ void Queue::merge_two_queues(Queue & q2)
 
       // set q2ptr to q1
       q2ptr = temp;
-    } else {
-	// remove elements from q1
-	//q1.dequeue();
     }
-    // the values in q1 are equal or smaller then q2
-    // add what is stored in q1ptr to q1
     
     //currentFront->next = q1ptr;
     enqueue(q1ptr->data);    
