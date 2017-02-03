@@ -133,6 +133,7 @@ class Queue
     public:
       QueueElement data;
       Node * next;
+
       //--- Node constructor
       Node(QueueElement value, Node * link = 0)
       /*-------------------------------------------------------------------
@@ -140,7 +141,7 @@ class Queue
         Postcondition: A Node has been constructed with value in its 
              data part and its next part set to link (default 0).
        ------------------------------------------------------------------*/
-      { data = value; next = link; }
+      { data = value; next = link;}
 
   };
 

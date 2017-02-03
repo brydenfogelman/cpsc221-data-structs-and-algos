@@ -185,6 +185,8 @@ void Queue::merge_two_queues(Queue & q2)
   Queue::NodePointer q1ptr; // always points to the smaller value
   Queue::NodePointer q2ptr; // always points to the larger value
 
+  Queue q3;
+
   // check which queue starts at a smaller value
   if(myFront->data > q2.myFront->data) {
     // if q2 starts with a smaller value set it to q1ptr
@@ -197,7 +199,7 @@ void Queue::merge_two_queues(Queue & q2)
   }
 
   // set queue to be empty
-  myFront = myBack = 0;
+  // myFront = myBack = 0;
 
   // for (q1ptr = myFront; q1ptr->next != 0; q1ptr = q1ptr->next)
   while(q1ptr != 0)
@@ -217,11 +219,16 @@ void Queue::merge_two_queues(Queue & q2)
 
       // set q2ptr to q1
       q2ptr = temp;
+    } else {
+      dequeue();
     }
     // the values in q1 are equal or smaller then q2
 
-    // add what is stored in q1ptr to q1
-    enqueue(q1ptr->data);
+    // add what is stored in q1ptr to q3
+    q3.enqueue(q1ptr->data);
+
+    // remove what is stored in q1
+    // dequeue();
 
     // point to the next value in q1ptr
     q1ptr = q1ptr->next;
@@ -230,11 +237,22 @@ void Queue::merge_two_queues(Queue & q2)
 
   // add leftover values in q2 that are greater then the largest value from q1
   while(q2ptr != 0) {
-    enqueue(q2ptr->data);
+    q3.enqueue(q2ptr->data);
 
     // remove elements from q2
     q2.dequeue();
     
     q2ptr = q2ptr->next;
+  }
+
+  myFront = q3.myFront;
+  myBack = q3.myBack;
+
+
+
+  // delete q3
+  while(!q3.empty())
+  {
+    q3.dequeue();
   }
 }
