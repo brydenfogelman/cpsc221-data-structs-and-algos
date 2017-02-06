@@ -239,7 +239,7 @@ void Queue::merge_two_queues(Queue & q2)
   }
 
   // add leftover values in q2 that are greater then the largest value from q1
-  while(q2ptr != 0) {
+  while(q2ptr!=0) {
     enqueue(q2ptr->data);
 
     // remove elements from q2
