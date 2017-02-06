@@ -65,7 +65,21 @@ void printHeap(int *heap, int size, int node=0, int d=0) {
 	int right = 2 * node + 2;
 	if(right < size) printHeap(heap, size, right, d);
 */
-	
+/*
+	d++;
+        // left
+        int left = 2 * node + 1;
+        if(left < size) printHeap(heap, size, left, d);
+        // right
+        int right = 2 * node + 2;
+        if(right < size) printHeap(heap, size, right, d);	
+
+	for(int j = 0; j < d; j++)
+	{
+		cout << " ";
+	}
+	cout << heap[node] << endl;
+*/
 }
 
 //PRE:  heap points to an array representing a heap
@@ -85,6 +99,30 @@ void remove(int* heap, int key, int & size) {
 	right = 2(index)+2
 	parent = (k-1)/2
 	*/
+	// check if root node
+	int mid = size / 2;
+	
+	for(int count = 0; count < size; count++)
+	{
+		if(heap[mid] == key) {
+			if(mid != size - 1) {
+				// save last node
+				int temp = heap[size-1];
+				// swap node to be deleted to last node
+				heap[size-1] = heap[mid];
+				// move last node to deleted nodes old position 
+				heap[mid] = temp;
+			}
+			// re heapify the array
+			heapify(heap, size - 1);
+		return;
+		} else if (heap[mid] > key) {
+			mid = mid / 2 + mid;
+		} else {
+			mid = mid / 2;
+		}
+	}
+	
 	
 }
 
