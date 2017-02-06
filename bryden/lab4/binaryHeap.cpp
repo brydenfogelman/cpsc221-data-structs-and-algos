@@ -49,23 +49,51 @@ void sort(int* heap, int size) {
 //PRE:  The capacity of the array pointed to by heap is at least size.
 //      node is the index of the root of the current sub-tree and
 //      it is at depth d in the whole heap
-//POST: The first size elements of heap are printed as a tree
-void printHeap(int *heap, int size, int node=0, int d=0) {
-    // TODO: put your code here for Questions 1 and 2
-/*	
-	for (int j = 0; j < d; j++) {
-		cout << "*";
-	}
-	cout << heap[node] << endl;
-	d++;
-	// left
-	int left = 2 * node + 1;
-	if(left < size) printHeap(heap, size, left, d);
-	// right
-	int right = 2 * node + 2;
-	if(right < size) printHeap(heap, size, right, d);
-*/
+//POST: The first size elements of heap are printed as a tree in the style of PART 1
+/*void printHeap(int *heap, int size, int node = 0, int d = 0) {
+  // TODO: put your code here for Questions 1 and 2
+ 
+  if(size == 0) return;
+ 
+  for (int j = 0; j < d; j++) {
+    cout << "*";
+  }
+  cout << heap[node] << endl;
+  d++;
+  // left
+  int left = 2 * node + 1;
+  if(left < size) printHeap(heap, size, left, d);
+  // right
+  int right = 2 * node + 2;
+  if(right < size) printHeap(heap, size, right, d);
+  
 	
+  }*/
+
+//PRE:  The capacity of the array pointed to by heap is at least size.
+//      node is the index of the root of the current sub-tree and
+//      it is at depth d in the whole heap
+//POST: The first size elements of heap are printed as a tree in the style of PART 2
+void printHeap(int *heap, int size, int node = 0, int d = 0){
+  
+  if(size == 0) return;
+
+  d++;
+  
+  // right
+  int right = 2 * node + 2;
+  if(right < size) printHeap(heap, size, right, d);
+  
+  for(int i = 0; i < d; i++){
+    cout<<"  ";
+  }
+    
+  cout<<heap[node]<<" "<<endl;
+
+  //left
+  int left = 2 * node + 1;
+  if(left < size) printHeap(heap, size, left, d);
+
 }
 
 //PRE:  heap points to an array representing a heap
@@ -73,27 +101,46 @@ void printHeap(int *heap, int size, int node=0, int d=0) {
 //      size is the number of elements in the heap
 //POST: all elements with key value = key have been removed from
 //	the heap and size is the new heap size.
-void remove(int* heap, int key, int & size) {
-    // TODO: put your code for Question 3 here
-	/*
-	replace with last element then swap with the child with the
-	most minimum value
-	
-	in Array structure
-	root = 0
-	left = 2(index)+1
-	right = 2(index)+2
-	parent = (k-1)/2
-	*/
-	
-}
+void remove(int* heap, int key, int & size){
 
+  int tempSize = size;
+    
+  for(int i = 0; i < size; i++){
+    if(key == heap[i]){
+      
+      for(int j = i; j < size-1; j++){
+	heap[j] = heap[j+1];
+      }
+      
+      tempSize--;
+    }
+  }
+  
+  size = tempSize;
+  heapify(heap, size);
+
+}
 //PRE:  heap1 and heap2 contain size1 and size2 elements respectively.
 //POST: output a new heap (whose size is size1+size2) containing all
 //      the elements in heap1 and heap2 (including duplicates).
 int* mergeHeap(int* heap1, int* heap2, int size1, int size2) {
     // TODO: replace the following line with your code for Question 4
-    return NULL;
+  
+  int* newHeap = new int[size1+size2];  
+  
+  for(int i = 0; i < size1+size2; i++){
+    if(i<size1){
+      newHeap[i] = heap1[i];
+    }
+    else{
+      newHeap[i] = heap2[i-size1];
+    }
+  }
+
+  heapify(newHeap, size1+size2);
+
+  return newHeap;
+
 }
 
 int input1[] = {8,3,5,6,2,9,1,7,4,0};
