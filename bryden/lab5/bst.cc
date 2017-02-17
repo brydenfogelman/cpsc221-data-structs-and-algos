@@ -127,78 +127,12 @@ bool delete_node(Node*& root, int key) {
 		n = n->right;
 	}
 
-	std::cout << "N: " << n->key << std::endl;
-	int newKey = n->key;
-	//if(target != root)
-		target->key = newKey;
-	std::cout << "TL: " << target->key << std::endl;
-	//else
-	//	root->key = newKey;
-	delete_node(target->left, newKey); 
+	// swap keys
+	target->key = n->key;
 
-	// find the parent of the rightmost node 
-	//Node* parent_n = find_parent(target, n);
-
-	// if the parent of n is not target (ie. target must be a right descendant)
-	//if(parent_n == target) {
-		//was != parent_n->right = NULL;
-	
-	// swap target and left node
-	//Node * tempR = n->right;
-	//Node * tempL = n->left;
-	//n->right = target->right;
-
-	
-	//target->right = temp->right;
-	//target->left = temp->left;
-	//n->right = temp->right;
-	//n->left = temp->left;
-	//if(target->left == n) {
-	//	n->left = target;	
-	//} else {
-	//	n->left = target->left;
-	//}
-
-	//target->right = tempR;
-	//target->left = tempL;
-	
-	//if(parent != NULL) {
-	//	if(parent->left == target)
-	//		parent->left = n;
-	//	else
-	//		parent->right = n;
-	//} else
-	//	root = n;
-
-	//target->right = tempR;
-	//target->left = tempL;
-	
-	// recursively
-	//delete_node(root,key);
-	//} else {
-		
-	//}
-	// set n to children of target
-	//n->right = target->right;
-	// ???
-	//if(target->left != n)
-	//	n->left = target->left;
-	
-	// if the target node is not the root
-	//if(parent != NULL) {	
-		// check which child of parent target is
-		//if( parent->left == target)
-		//	parent->left = n;
-		//else
-		//	parent->right = n;
-		// a right node will always exist in this case
-		//n->right = target->right;
-	
-		// make sure this isn't the case where the left node replaces target
-		//if(target->left != n)
-		//	n->left = target->left;
-	//} else
-	//	root = n;
+	// set root to the left node of target and delete the extra key value
+	delete_node(target->left, target->key); 
+	return false;
  }
 
   // free target
