@@ -243,6 +243,7 @@ void Queue::merge_two_queues(Queue & q2)
   }
 
   // add leftover values in q2 that are greater then the largest value from q1
+<<<<<<< HEAD
   while(q2ptr != 0) {
     q3.enqueue(q2ptr->data);
 
