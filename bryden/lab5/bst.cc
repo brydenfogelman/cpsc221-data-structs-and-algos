@@ -83,7 +83,6 @@ bool delete_node(Node*& root, int key) {
   // find target node to delete
   Node* target = find(root, key);
   if (!target) return false;
-  std::cout << "T: " << target << std::endl;
   // find parent of target
   Node* parent = find_parent(root, target);
 
@@ -188,8 +187,8 @@ int numLeaves( Node* root ) {
    // add leafs in right tree with leaf in left tree
 	if(root == NULL) return 0;
 	if(root->left == NULL && root->right == NULL) return 1;
-	if(root != NULL) return numLeaves(root->right) + numLeaves(root->left); 
-	return 0;
+	return numLeaves(root->right) + numLeaves(root->left); 
+	//return 0;
 }
 
 /**
