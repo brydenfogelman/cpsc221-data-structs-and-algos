@@ -255,6 +255,8 @@ void heap_tester() {
 	heap_delete_tests(hp);
 }
 
+//Part 4
+
 void text_analysis_tester(string_bst &tree) {
 	std::cout << std::endl << "BEGINNING TESTS FOR PART 3" << std::endl;
 	overall_most_freq(copy_to_heap(tree));
