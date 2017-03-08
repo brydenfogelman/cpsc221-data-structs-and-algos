@@ -178,6 +178,8 @@ void heap_tester() {
 	heap_delete_tests(hp);
 }
 
+//Part 4
+
 void text_analysis_tester(string_bst &tree) {
 	std::cout << std::endl << "BEGINNING TESTS FOR PART 3" << std::endl;
 	overall_most_freq(copy_to_heap(tree));
@@ -195,7 +197,7 @@ int main(int argc, char* argv[]) {
 	
 	//--- Part 2: string_bst implementation
 	string_bst tree;
-	load_bst("beemovie.txt", tree); // create a bst from an input file.
+	load_bst("sample2.txt", tree); // create a bst from an input file.
 	tree_tester(tree);			//sample2.txt contains a much bigger file
 	
 	//--- Part 3: word frequency analysis of text files
