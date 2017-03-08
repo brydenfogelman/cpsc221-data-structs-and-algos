@@ -186,7 +186,7 @@ void at_least_length(max_heap hp, size_t num_letters) {
 		temp = hp.top();
 
 		// if the string length is equal to the input specified then print
-		if(temp.word.size() == num_letters) {
+		if(temp.word.size() >= num_letters) {
 			std::cout << temp << std::endl;
 			count++;
 		}
