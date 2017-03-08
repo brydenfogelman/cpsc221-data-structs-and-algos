@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_store
+>>>>>>> 4c8422d427abbec71625c26916e31578ff0d6f6b
 *.o
