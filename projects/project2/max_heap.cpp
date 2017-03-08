@@ -36,7 +36,7 @@ text_item& max_heap::top() {
 	return data[0];
 }
 
-void max_heap::print_heap(int node=0, int d=0) {
+void max_heap::print_heap(int node, int d) {
 	if(empty()) return;
 
 	d++;
@@ -55,10 +55,6 @@ void max_heap::print_heap(int node=0, int d=0) {
 	int left = 2 * node + 1;
 	if(left < numItems) print_heap(left, d);
 
-	// for(int i = 0; i < numItems; i++) {
-	// 	cout << data[i] << " ";
-	// }
-	// cout << endl;
 }
 
 
@@ -69,15 +65,19 @@ text_item max_heap::delete_max() {
 	if (empty()) {
 		throw std::logic_error("Cannot delete, heap is empty!");
 	} else {
+
+		// save the item to be deleted for the return
+		text_item to_delete = data[0];
 		
 		// set root to last element
 		data[0] = data[numItems];
 		numItems--;
 
-		// swap down starting at 
+		// swap down starting at root to rebuild heap
 		swap_down(0);
 
-		return top();
+		// return deleted node
+		return to_delete;
 	}
 }
 
@@ -88,9 +88,9 @@ void max_heap::swap_down(int i) {
 	int max = i;
 	
 	// find who holds the max item if i's childrend
-	if(leftChild < max_capacity && data[leftChild].freq > data[max].freq)
+	if(leftChild < numItems && data[leftChild].freq >= data[max].freq)
 		max = leftChild;
-	if(rightChild < max_capacity && data[rightChild].freq > data[max].freq)
+	if(rightChild < numItems && data[rightChild].freq >= data[max].freq)
 		max = rightChild;
 
 	if(max != i) {
@@ -120,7 +120,6 @@ void max_heap::insert(const text_item & item) {
 
 void max_heap::swap_up(int i) {
 	if(i >= 0) {
-		// ADD CODE HERE
 
 		text_item parent = data[(i-1)/2];
 		text_item curr = data[i];
