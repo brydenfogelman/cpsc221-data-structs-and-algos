@@ -88,9 +88,9 @@ void max_heap::swap_down(int i) {
 	int max = i;
 	
 	// find who holds the max item if i's childrend
-	if(leftChild < numItems && data[leftChild].freq >= data[max].freq)
+	if(leftChild < numItems && data[leftChild].freq > data[max].freq)
 		max = leftChild;
-	if(rightChild < numItems && data[rightChild].freq >= data[max].freq)
+	if(rightChild < numItems && data[rightChild].freq > data[max].freq)
 		max = rightChild;
 
 	if(max != i) {

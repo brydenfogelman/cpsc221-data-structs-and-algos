@@ -261,7 +261,7 @@ void text_analysis_tester(string_bst &tree) {
 	std::cout << std::endl;
 	at_least_length(copy_to_heap(tree), 6); // change the 8 to test other string-lengths
 	std::cout << std::endl;
-	starts_with(copy_to_heap(tree), 'c'); // change the 'c' to test words that starts_with_letter
+	starts_with(copy_to_heap(tree), 'v'); // change the 'c' to test words that starts_with_letter
 											// with different characters
 }
 
