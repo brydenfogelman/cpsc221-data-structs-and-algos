@@ -107,24 +107,47 @@ void heap_delete_tests(max_heap &hp) {
 //--- PART 2: Implementation and testing of BST word_frequency
 void tree_tester(string_bst const &tree) {
 	std::cout << std::endl << "BEGINNING TESTS FOR PART 2" << std::endl;
-	
+	string to_find = "difficult";
+	int num_times = 0;
 	//--- Testing word_frequency functionality
 	//--- This does not fully test word_frequency functionality.
 	if (tree.size() > 1) {
-		string to_find = "difficult";
-		int num_times = tree.word_frequency(to_find);
+	  num_times = tree.word_frequency(to_find);
+	  std::cout << "Found: "<< to_find << 
+	    " in the input file " << num_times 
+		    << " time(s)." << std::endl;
+	}
+
+	//tree.display();
+	
+	//--- Specific word_frequency functionality that should be tested:
+	
+	// can search through both left and right subtrees if not found at current node
+	to_find = "bee";
+	if (tree.size() > 1) {
+		num_times = tree.word_frequency(to_find);
+		std::cout << "Found: "<< to_find << 
+			" in the input file " << num_times 
+			<< " time(s)." << std::endl;
+	}
+
+	to_find = "then";
+	if (tree.size() > 1) {
+		num_times = tree.word_frequency(to_find);
 		std::cout << "Found: "<< to_find << 
 			" in the input file " << num_times 
 			<< " time(s)." << std::endl;
 	}
 	
-	//--- Specific word_frequency functionality that should be tested:
-	
-	// can search through both left and right subtrees if not found at current node
-		// <INSERT TEST(S) HERE>
-		
 	// returns 0 if word is not found
-		// <INSERT TEST(S) HERE>
+	to_find = "ajsogneislasd";
+	if (tree.size() > 1) {
+	
+	        num_times = tree.word_frequency(to_find);
+		std::cout << "Found: "<< to_find << 
+			" in the input file " << num_times 
+			<< " time(s)." << std::endl;
+	}
 			
 }
 
