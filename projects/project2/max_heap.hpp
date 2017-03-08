@@ -113,6 +113,13 @@ class max_heap
   -----------------------------------------------------------------------*/
   void insert(text_item const& item);
 
-  void print_heap(int node, int d);
+  /*-----------------------------------------------------------------------
+    Prints the tree with the root node as the further element to the left
+    and the leaves on the right.
+
+    Precondition:  None
+    Postcondition: None
+  -----------------------------------------------------------------------*/
+  void print_heap(int node=0, int d=0);
   
 }; // end of class declaration
