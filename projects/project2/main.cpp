@@ -274,7 +274,7 @@ void heap_tester() {
 	heap_delete_tests(hp);
 }
 
-//Part 4
+//Part 3 and 4
 
 void text_analysis_tester(string_bst &tree) {
 	std::cout << std::endl << "BEGINNING TESTS FOR PART 3" << std::endl;
@@ -284,6 +284,12 @@ void text_analysis_tester(string_bst &tree) {
 	std::cout << std::endl;
 	starts_with(copy_to_heap(tree), 'v'); // change the 'c' to test words that starts_with_letter
 											// with different characters
+
+	std::cout << std::endl << "BEGINNING TESTS FOR PART 4" << std::endl;
+	std::cout << std::endl;
+	at_least_length(copy_to_heap(tree), 3);
+	std::cout << std::endl;
+	starts_with(copy_to_heap(tree), 'a'); 
 }
 
 int main(int argc, char* argv[]) {
@@ -293,10 +299,13 @@ int main(int argc, char* argv[]) {
 	
 	//--- Part 2: string_bst implementation
 	string_bst tree;
-	load_bst("sample1.txt", tree); // create a bst from an input file.
+	load_bst("sample2.txt", tree); // create a bst from an input file.
 	tree_tester(tree);			//sample2.txt contains a much bigger file
 	
 	//--- Part 3: word frequency analysis of text files
 	text_analysis_tester(tree);
+
+	//--- Part 4:  word frequency analysis of text files with different parameters
+	
 
 }
