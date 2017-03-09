@@ -61,10 +61,12 @@ void heap_insert_tests(max_heap &hp) {
 void heap_delete_tests(max_heap &hp) {
 	text_item temp;
 
-	hp.print_heap();
-	
 	//--- Testing deleteMax functionality
 	std::cout << "*** TESTING DELETEMAX ***" << std::endl;
+
+	std::cout << "Tree before deleting: " << std::endl;	
+	hp.print_heap();
+	
 	//--- This does not fully test delete_max functionality.
 	if (hp.size() > 1) {
 		temp = hp.delete_max();
@@ -72,7 +74,7 @@ void heap_delete_tests(max_heap &hp) {
 		temp = hp.top();
 		std::cout << "Top of heap is now: " << temp << std::endl;	
 	}
-
+	std::cout << "Tree after deleting: " << std::endl;	
 	hp.print_heap();
 	
 	//--- Specific insert functionality that should be tested:
@@ -80,17 +82,26 @@ void heap_delete_tests(max_heap &hp) {
 	// remove_max works when swap_down with left child
 	cout << endl;
 	cout << "*** SWAP DOWN WITH LEFT CHILD ***" << endl;
+	temp = hp.delete_max();
+	std::cout << "Item returned from heap delete: "<< temp << std::endl;
+	std::cout << "New top was old left child (40): " << hp.top() << std::endl;
+	std::cout << "Tree after deleting: " << std::endl;
+	hp.print_heap();
+
 		
 	// remove_max works when swap_down with right child
 	cout << endl;
 	cout << "*** SWAP DOWN WITH RIGHT CHILD ***" << endl;
-		
+	temp = hp.delete_max();
+	std::cout << "Item returned from heap delete: "<< temp << std::endl;
+	std::cout << "New top was old right child (38): " << hp.top() << std::endl;
+
 	// remove_max on an empty heap (should throw exception similar to top())
 	cout << endl;
 	cout << "*** EMPTY HEAP ***" << endl;
 
 	// delete until empty
-	while(hp.size() > 1) {
+	while(hp.size() > 0) {
 		temp = hp.delete_max();
 	}
 
@@ -282,7 +293,7 @@ int main(int argc, char* argv[]) {
 	
 	//--- Part 2: string_bst implementation
 	string_bst tree;
-	load_bst("sample2.txt", tree); // create a bst from an input file.
+	load_bst("sample1.txt", tree); // create a bst from an input file.
 	tree_tester(tree);			//sample2.txt contains a much bigger file
 	
 	//--- Part 3: word frequency analysis of text files

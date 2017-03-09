@@ -97,6 +97,7 @@ void max_heap::swap_down(int i) {
 		text_item temp = data[i];
 		data[i] = data[max];
 		data[max] = temp;
+		// cout << data[max];
 
 		swap_down(max);
 	}
