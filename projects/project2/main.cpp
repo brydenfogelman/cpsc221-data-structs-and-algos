@@ -117,12 +117,15 @@ void tree_tester(string_bst const &tree) {
 	    " in the input file " << num_times 
 		    << " time(s)." << std::endl;
 	}
+	std::cout<<"Expected Frequency: 39"<<std::endl;
 
 	//tree.display();
 	
 	//--- Specific word_frequency functionality that should be tested:
 	
 	// can search through both left and right subtrees if not found at current node
+
+	std::cout<<std::endl<<"Testing left and right subtrees by finding 2 words, one on the left side of the root and one on the right side of the root"<<endl;
 	to_find = "bee";
 	if (tree.size() > 1) {
 		num_times = tree.word_frequency(to_find);
@@ -130,6 +133,7 @@ void tree_tester(string_bst const &tree) {
 			" in the input file " << num_times 
 			<< " time(s)." << std::endl;
 	}
+	std::cout<<"Expected Frequency: 2"<<endl;
 
 	to_find = "then";
 	if (tree.size() > 1) {
@@ -138,16 +142,20 @@ void tree_tester(string_bst const &tree) {
 			" in the input file " << num_times 
 			<< " time(s)." << std::endl;
 	}
+	std::cout<<"Expected Frequency: 1034"<<endl;
 	
+	std::cout<<std::endl<<"Testing search for word that does not exist in sample text. ajsogneislasd is not a word, we will use it to test!"<<endl;
+
 	// returns 0 if word is not found
 	to_find = "ajsogneislasd";
 	if (tree.size() > 1) {
 	
 	        num_times = tree.word_frequency(to_find);
-		std::cout << "Found: "<< to_find << 
+ 		std::cout << "Found: "<< to_find << 
 			" in the input file " << num_times 
 			<< " time(s)." << std::endl;
 	}
+	std::cout<<"Expected Frequency: 0"<<endl;
 			
 }
 

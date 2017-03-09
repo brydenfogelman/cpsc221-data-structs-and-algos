@@ -70,7 +70,7 @@ text_item max_heap::delete_max() {
 		text_item to_delete = data[0];
 		
 		// set root to last element
-		data[0] = data[numItems];
+		data[0] = data[numItems-1];
 		numItems--;
 
 		// swap down starting at root to rebuild heap
