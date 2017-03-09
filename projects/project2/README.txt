@@ -14,16 +14,19 @@ Files:
 
 	--Makefile:  Properly formatted and written make file for project
 
-	--runway.C:  Contains the simulation code for Part 2.  
-	  	      This is the primary source file for the airport simulation program 
+	--main.cpp:  File containing primary testing  
 
-	--LQueue.h:  Header file for Queue implementation
+	--max_heap.cpp:  File containing data structure and methods for max heap
 
-	--LQueue.C:  File defining Queue data structure and implementation
+	--string_bst.cpp:  File containing data structure and methods for max heap
 
-	--LQueue_driver.C:  Test Code for LQueue data structure
+	--util.cpp:  File containing utility methods
+
+	--text_item.cpp:  File containing text item data structure
+
+	--sample1.txt, sample2.txt, beemovie.txt:  sample text files
 	
-	--sampleOutput2.txt:  Sample output from ./runway
+	--output.txt:  output of test files 
 
 
 New functions:
