@@ -36,6 +36,7 @@ text_item& max_heap::top() {
 	return data[0];
 }
 
+// Helper function used for testing. Explained in README.txt
 void max_heap::print_heap(int node, int d) {
 	if(empty()) return;
 
@@ -59,8 +60,6 @@ void max_heap::print_heap(int node, int d) {
 
 
 //--- You must comple the following functions: 
-
-
 text_item max_heap::delete_max() {
 	if (empty()) {
 		throw std::logic_error("Cannot delete, heap is empty!");
@@ -93,12 +92,11 @@ void max_heap::swap_down(int i) {
 	if(rightChild < numItems && data[rightChild].freq > data[max].freq)
 		max = rightChild;
 
+	// if the max has changed swap it then coutinue to recursively swapdown
 	if(max != i) {
 		text_item temp = data[i];
 		data[i] = data[max];
 		data[max] = temp;
-		// cout << data[max];
-
 		swap_down(max);
 	}
 
@@ -108,29 +106,34 @@ void max_heap::insert(const text_item & item) {
 	if (full()) {
 		throw std::logic_error("Cannot insert, heap array is full!");
 	} else {
+		// if item set first value of array
 		if(empty()) {
 			data[0] = item;
 			numItems++;
 		} else {
+			// add item to last position of array
 			data[numItems] = item;
+			// make sure heap behaves invariant
 			swap_up(numItems);
+			// increment num items
 			numItems++;
 		}
 	}
 }
 
 void max_heap::swap_up(int i) {
+	// make sure we can still access the array
 	if(i >= 0) {
-
 		text_item parent = data[(i-1)/2];
 		text_item curr = data[i];
-		// cout << parent.freq << " " << curr.freq << endl;
+
 		// swap when curr node is greater then parent
 		if(curr.freq > parent.freq) {
 			// swap in array
 			data[(i-1)/2] = curr;
 			data[i] = parent;
-			// cout << data[(i-1)/2] << " " << data[i] << endl;
+
+			// recursively swap up with parent index
 			swap_up((i-1)/2);
 		
 		}
