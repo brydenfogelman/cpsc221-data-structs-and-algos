@@ -1,0 +1,162 @@
+y5c9@lulu:project2$ ./main 
+How many items should be added to heap? 12
+Created heap of size 12
+Current number of items in heap is: 0
+Heap is empty, can't access top!
+
+BEGINNING TESTS FOR PART 1A
+*** TESTING BASIC INSERT ***
+adding item1,  with number 10 to heap
+Top of heap is: text_item{"item1",10}
+adding item2,  with number 5 to heap
+Top of heap is: text_item{"item1",10}
+adding item3,  with number 15 to heap
+Top of heap is: text_item{"item3",15}
+adding item4,  with number 30 to heap
+Top of heap is: text_item{"item4",30}
+adding item5,  with number 35 to heap
+Top of heap is: text_item{"item5",35}
+adding item6,  with number 50 to heap
+Top of heap is: text_item{"item6",50}
+adding item7,  with number 25 to heap
+Top of heap is: text_item{"item6",50}
+adding item8,  with number 20 to heap
+Top of heap is: text_item{"item6",50}
+adding item9,  with number 40 to heap
+Top of heap is: text_item{"item6",50}
+adding item10,  with number 45 to heap
+Top of heap is: text_item{"item6",50}
+
+*** NO SWAP UPS ***
+adding test1,  with number 0 to heap
+      25 
+    35 
+      10 
+  50 
+        0 
+      40 
+        15 
+    45 
+        20 
+      30 
+        5 
+
+*** MULTIPLE SWAP UPS ***
+adding test2,  with number 38 to heap
+      25 
+    38 
+      35 
+        10 
+  50 
+        0 
+      40 
+        15 
+    45 
+        20 
+      30 
+        5 
+
+BEGINNING TESTS FOR PART 1B
+*** TESTING DELETEMAX ***
+Tree before deleting: 
+      25 
+    38 
+      35 
+        10 
+  50 
+        0 
+      40 
+        15 
+    45 
+        20 
+      30 
+        5 
+Item returned from heap delete: text_item{"item6",50}
+Top of heap is now: text_item{"item10",45}
+Tree after deleting: 
+      25 
+    38 
+      35 
+  45 
+        0 
+      15 
+        10 
+    40 
+        20 
+      30 
+        5 
+
+*** SWAP DOWN WITH LEFT CHILD ***
+Item returned from heap delete: text_item{"item10",45}
+New top was old left child (40): text_item{"item9",40}
+Tree after deleting: 
+      25 
+    38 
+      35 
+  40 
+      15 
+        10 
+    30 
+        0 
+      20 
+        5 
+
+*** SWAP DOWN WITH RIGHT CHILD ***
+Item returned from heap delete: text_item{"item9",40}
+New top was old right child (38): text_item{"test2",38}
+
+*** EMPTY HEAP ***
+Current size of heap: 0
+Cannot delete, heap is empty!
+
+BEGINNING TESTS FOR PART 2
+Found: difficult in the input file 39 time(s).
+Expected Frequency: 39
+
+Testing left and right subtrees by finding 2 words, one on the left side of the root and one on the right side of the root
+Found: bee in the input file 2 time(s).
+Expected Frequency: 2
+Found: then in the input file 1034 time(s).
+Expected Frequency: 1034
+
+Testing search for word that does not exist in sample text. ajsogneislasd is not a word, we will use it to test!
+Found: ajsogneislasd in the input file 0 time(s).
+Expected Frequency: 0
+
+BEGINNING TESTS FOR PART 3
+*** Top 5 most frequent words: ***
+text_item{"the",40506}
+text_item{"of",19652}
+text_item{"and",14786}
+text_item{"a",14315}
+text_item{"to",13761}
+
+*** Top 5 most frequent words with at least 6 letters ***
+text_item{"marius",1347}
+text_item{"valjean",1098}
+text_item{"himself",1063}
+text_item{"cosette",1000}
+text_item{"little",971}
+
+*** Top 5 most frequent words that begin with v ***
+text_item{"valjean",1098}
+text_item{"very",918}
+text_item{"voice",337}
+text_item{"visible",116}
+text_item{"vague",80}
+
+BEGINNING TESTS FOR PART 4
+
+*** Top 5 most frequent words with at least 3 letters ***
+text_item{"the",40506}
+text_item{"and",14786}
+text_item{"was",8604}
+text_item{"that",7865}
+text_item{"his",6442}
+
+*** Top 5 most frequent words that begin with a ***
+text_item{"and",14786}
+text_item{"a",14315}
+text_item{"at",4035}
+text_item{"as",3225}
+text_item{"all",2448}

@@ -198,6 +198,8 @@ void Queue::merge_two_queues(Queue & q2)
          dequeue();
     }
 
+  Queue q3;
+
   // check which queue starts at a smaller value
   if(q1.myFront->data > q2.myFront->data) {
     // if q2 starts with a smaller value set it to q1ptr
@@ -230,6 +232,8 @@ void Queue::merge_two_queues(Queue & q2)
 
       // set q2ptr to q1
       q2ptr = temp;
+    } else {
+      dequeue();
     }
     
     //currentFront->next = q1ptr;
@@ -239,8 +243,9 @@ void Queue::merge_two_queues(Queue & q2)
   }
 
   // add leftover values in q2 that are greater then the largest value from q1
-  while(q2ptr!=0) {
-    enqueue(q2ptr->data);
+<<<<<<< HEAD
+  while(q2ptr != 0) {
+    q3.enqueue(q2ptr->data);
 
     // remove elements from q2
     q2.dequeue();
