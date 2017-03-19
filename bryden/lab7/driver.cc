@@ -27,6 +27,9 @@ int main(int argc, char *argv[]) {
 	}
 	n = atoi(argv[2]);
 	m = atoi(argv[3]);
+
+	cout << "Load factor: " << ((double) n) / ((double) m) << endl;
+	
 	Hashtable H(m);
 	
 	switch(argv[1][0]) {

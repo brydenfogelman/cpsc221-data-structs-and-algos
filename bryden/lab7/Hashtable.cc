@@ -2,8 +2,14 @@
 #include <cstdlib>
 #include <iostream>
 #include <cassert> 
+#include <stdlib.h>
+#include <math.h>
 
 using namespace std; 
+
+// set max probes to be a tenth of the size
+int max_probes;
+int hash2_num;
 
 Hashtable::Hashtable(int size) {
 	//constructor
@@ -12,9 +18,14 @@ Hashtable::Hashtable(int size) {
 	if (prime != size) { 
 	  cout << "Warning: size = " << size << " is not a prime number." << endl; 
 /* uncomment these if you want */ 
-//	  cout << "Using " << prime << " instead." << endl; 
-//	  _size = prime; 
+	  cout << "Using " << prime << " instead." << endl; 
+	  _size = prime; 
 	}
+	// generate random number for the second hash function
+	hash2_num = (rand() % _size + 1);
+	// set mac probes to log of size
+	max_probes = log(_size);
+
 	_totalProbes = 0;
 	_numInserts = 0;
 	_numFailures = 0; 
@@ -60,6 +71,10 @@ int Hashtable::hash(int k) {
 	return k % _size;
 }
 
+int Hashtable::hash2(int k) {
+	return k % hash2_num;
+}
+
 void Hashtable::qinsert(int k) {
 	// Insert k in the hash table.
 	// Use open addressing with quadratic probing and hash(k) = k % _size.
@@ -74,7 +89,19 @@ void Hashtable::qinsert(int k) {
 
     // ************* ADD YOUR CODE HERE *******************
     
-    
+    int p = hash(k) % _size;
+
+    // if the table is not empty probe
+	for(int i = 1; i < _size && i < max_probes; i++) {
+		if( _table[p] == EMPTY) {
+			_table[p] = k;
+			tallyProbes(i);
+			return;
+		}
+		// (a+b)modn = (amodn+bmodn)modn
+		// abmodn=(amodn*bmodn)modn
+		p = (p % _size + ((i % _size) * (i % _size))) % _size;
+	}
     
     // Your method should return after it stores the value in an EMPTY slot 
     // and calls tallyProbes, so if it gets here, it didn't find an EMPTY slot 
@@ -88,7 +115,17 @@ void Hashtable::linsert(int k) {
 
     // ************* ADD YOUR CODE HERE *******************
     
-    
+    int p = hash(k) % _size;
+
+    // if the table is not empty probe
+	for(int i = 1; i < _size && i < max_probes; i++) {
+		if( _table[p] == EMPTY) {
+			_table[p] = k;
+			tallyProbes(i);
+			return;
+		}
+		p = (p + i) % _size;
+	}
     
     // Your method should return after it stores the value in an EMPTY slot 
     // and calls tallyProbes, so if it gets here, it didn't find an EMPTY slot 
@@ -102,7 +139,19 @@ void Hashtable::dinsert(int k) {
 	// and also implement a second hash function.
 
     // ************* ADD YOUR CODE HERE *******************
-    
+    int h = hash2(k);
+    int p = hash(k) % _size;
+
+
+    // if the table is not empty probe
+	for(int i = 1; i < _size && i < max_probes; i++) {
+		if( _table[p] == EMPTY) {
+			_table[p] = k;
+			tallyProbes(i);
+			return;
+		}
+		p = (p + h) % _size;
+	}
     
     
     // Your method should return after it stores the value in an EMPTY slot 
