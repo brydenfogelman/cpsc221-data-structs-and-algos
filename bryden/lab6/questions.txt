@@ -1,0 +1,13 @@
+Q2:
+
+Quicksort is O(nlgn)
+
+NN=100000	avg ~= 2000000		nlgn ~= 1000000
+NN=10000	avg ~= 150000		nlgn ~= 100000
+NN=1000		avg ~= 10000		nlgn ~= 7000
+NN=500		avg ~= 5000			nlgn ~= 3000
+NN=200		avg ~= 1500			nlgn ~= 1000
+NN=100 		avg ~= 600			nlgn ~= 500
+NN=10		avg ~= 25			nlgn ~= 23
+
+Q5: average case is nlgn. the worst case is when the pivot is either the smallest or largest element of the list (n^2). This is unlikely when choosing the pivot at random.
