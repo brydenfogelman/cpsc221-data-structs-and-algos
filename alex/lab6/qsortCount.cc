@@ -33,12 +33,15 @@ void quicksort(int a, int b) {
 int qc(int n) {
   if(n==0) return 0;
   int comps = 0;
-  int p = randint(0,n); // pivot
   int m = 0;
   int i;
   // in-place partition:
   for (i = 0; i < n; i++) {
-    comps++;
+    
+    if(i%2 == 0){
+      m++;
+      comps++;
+    }
   }
 
   comps+=qc(m-1);
@@ -58,7 +61,6 @@ int main(int argc, char *argv[]) {
 		x[i] = rand() % NN;
 	}
 	
-	quicksort(0, NN-1);
 	std::cout << std::endl;
 
 	std::cout << qc(NN) <<std::endl;
