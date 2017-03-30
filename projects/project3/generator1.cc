@@ -11,9 +11,9 @@ int main(int argc, char* argv[])
 
 	int n = atoi(argv[1]);
 
-	for(int i = 1; i <= n/2; i++) {
+	// insert in descending error
+	for(int i = n; i >= 0; i--) {
 		cout << "I " << i << endl;
-		cout << "F " << i << endl;
 		//cout << "F " << i << endl;
 		//cout << "F " << i << endl;
 	}
