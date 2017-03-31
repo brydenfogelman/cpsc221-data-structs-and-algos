@@ -11,15 +11,17 @@ int main(int argc, char* argv[])
 
 	int n = atoi(argv[1]);
 
-	// insert in ascending and find largest
-	for(int i = 1; i < n/2; i++) {
+	// insert in ascending
+	for(int i = 1; i <= n/2; i++) {
 		cout << "I " << i << endl;
 		//cout << "F " << i << endl;
 		//cout << "F " << i << endl;
 	}
+	
+	for(int i = n/2; i > 0; i--){
+	  cout<< "F" << i << endl;
 
-	for(int i = 1; i < n/2; i++) {
-		cout << "F " << i << endl;
 	}
+	      
 	return 0;
 }
